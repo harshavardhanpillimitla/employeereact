@@ -26,7 +26,7 @@ class UserDetail extends Component{
                  Authorization : `JWT ${jwt}`
             }
         }
-         axios.get(`http://localhost:8000/users/${id}/`,config)
+         axios.get(`https://backendemployeeapi.herokuapp.com/users/${id}/`,config)
          .then(res => {
               //const {name,user,picture,layitude,longitutude} = res.data;
               this.setState(res.data);

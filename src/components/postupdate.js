@@ -26,7 +26,7 @@ class PostUpdate extends Component
                         }
                     }
                     
-                    axios.get(`http://localhost:8000/post/${id}/`,config)
+                    axios.get(`https://backendemployeeapi.herokuapp.com/post/${id}/`,config)
                     .then(res => {
                             
                             console.log("stare",res.data)

@@ -25,7 +25,7 @@ class Home extends Component{
                  Authorization : `JWT ${jwt}`
             }
         }
-         axios.get('http://localhost:8000/post/',config)
+         axios.get('https://backendemployeeapi.herokuapp.com/post/',config)
          .then(res => {
               //const {name,user,picture,layitude,longitutude} = res.data;
               this.setState({data:res.data});

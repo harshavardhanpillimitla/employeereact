@@ -20,7 +20,7 @@ class Login extends Component{
         e.preventDefault();
         try{
         let data = this.state;
-        const {data :jwt} = await axios.post('http://localhost:8000/auth/login/',data)
+        const {data :jwt} = await axios.post('https://backendemployeeapi.herokuapp.com/auth/login/',data)
         localStorage.setItem('token',jwt.token);
         this.props.history.replace('/home')
         }

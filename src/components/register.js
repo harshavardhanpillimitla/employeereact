@@ -22,7 +22,7 @@ class Register extends Component{
         try{
         const data = this.state;
         
-        axios.post('http://localhost:8000/users/',data)
+        axios.post('https://backendemployeeapi.herokuapp.com/users/',data)
         .then(res => {
             alert('maybe success');
             this.props.history.replace('/login')
