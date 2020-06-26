@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 
 import {Link} from 'react-router-dom';
-import logo  from './logo192.png'
+
 
 
 class Post extends Component{
     render(){
-        const {id,name,user,picture,latitude,longitutude} = this.props.post;
+        const {id,name,picture,latitude,longitutude} = this.props.post;
         let postdetailurl = "/postdetail/"+id;
         let postupdateurl = "/postupdate/"+id;
         let userdetailurl = '/userdetail/'+id;
@@ -18,7 +18,7 @@ class Post extends Component{
                 <div className="row">
                     <div className="col-6">
                         
-                        <img src={picture}  alt={logo} className="container"/>
+                        <img src={picture}  alt ="" className="container"/>
 
                     </div>
                     <div className="col-6">

@@ -13,8 +13,7 @@ class AddPost extends Component{
     }
     componentDidMount(){
         //position.coords.latitude
-        let latitude=0.0;
-        let longitutude=0.0;
+        
         navigator.geolocation.getCurrentPosition(position => this.setLocation(position.coords.latitude,position.coords.longitude) )
         
          
@@ -43,7 +42,7 @@ class AddPost extends Component{
 
         try{
 
-            const {name,latitude,longitutude,picture}=this.state;
+            const {name,latitude,longitutude}=this.state;
             e.preventDefault();
             console.log(this.state);
             let form_data = new FormData();

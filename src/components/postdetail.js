@@ -47,7 +47,7 @@ class PostDetail extends Component{
 
     render(){
 
-      const {name,latitude,longitutude} = this.state;
+      const {latitude,longitutude} = this.state;
       const l = parseFloat(latitude);
       const ln =parseFloat(longitutude);
       const pos = {

@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+
 import Post from './post';
-import {Route,Switch} from 'react-router-dom'
+
 
 
 
@@ -18,7 +18,7 @@ class Home extends Component{
     {
         try{
         const jwt = localStorage.getItem("token");
-        const user = jwtDecode(jwt);
+   
         const config = {
             headers : {
                 'Content-Type': 'application/json',
