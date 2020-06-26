@@ -80,7 +80,7 @@ class PostUpdate extends Component
                      Authorization : `JWT ${jwt}`
                 }
             }
-             axios.put('http://localhost:8000/post/',form_data,config)
+             axios.patch('http://localhost:8000/post/',form_data,config)
              .then(res => {
                   
                   this.setState({data:res.data});
