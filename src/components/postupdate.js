@@ -84,12 +84,13 @@ class PostUpdate extends Component
              .then(res => {
                   
                   this.setState({data:res.data});
-                  alert("post tried to update")
+                  alert("post tried to update");
+                  this.props.history.replace("/home");
 
     
              })
 
-             this.props.history.replace("/home");
+             
         }catch(ex)
         {
     
