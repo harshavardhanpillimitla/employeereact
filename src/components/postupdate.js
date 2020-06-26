@@ -59,7 +59,7 @@ class PostUpdate extends Component
 
         try{
 
-            const {name,latitude,longitutude}=this.state;
+            const {id,name,latitude,longitutude}=this.state;
             e.preventDefault();
             console.log(this.state);
             let form_data = new FormData();
