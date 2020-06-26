@@ -67,11 +67,12 @@ class AddPost extends Component{
              .then(res => {
                   
                   this.setState({data:res.data});
+                  this.props.history.replace("/home");
 
     
              })
 
-             this.props.history.replace("/home");
+             
         }catch(ex)
         {
     
