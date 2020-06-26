@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
 import {Link} from 'react-router-dom';
+import logo  from './logo192.png'
 
 
 class Post extends Component{
@@ -17,7 +18,7 @@ class Post extends Component{
                 <div className="row">
                     <div className="col-6">
                         
-                        <img src={picture}  alt="image" className="container"/>
+                        <img src={picture}  alt={logo} className="container"/>
 
                     </div>
                     <div className="col-6">
