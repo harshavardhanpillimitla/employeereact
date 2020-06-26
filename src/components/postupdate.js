@@ -80,7 +80,7 @@ class PostUpdate extends Component
                      Authorization : `JWT ${jwt}`
                 }
             }
-             axios.patch('http://localhost:8000/post/',form_data,config)
+             axios.patch('https://backendemployeeapi.herokuapp.com/post/',form_data,config)
              .then(res => {
                   
                   this.setState({data:res.data});
