@@ -23,6 +23,7 @@ class Login extends Component{
         const {data :jwt} = await axios.post('https://backendemployeeapi.herokuapp.com/auth/login/',data)
         localStorage.setItem('token',jwt.token);
         this.props.history.replace('/home')
+        
         }
         catch(error)
         {
