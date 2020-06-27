@@ -25,12 +25,15 @@ const slice = createSlice({
 
 });
 export const {postRecieved,tokenReceived} = slice.actions;
-
-export const login = (data) => actions.apicallbegan({
-    
-    method:'post',
+const url = '/login'
+export const login = () => actions.apicallbegan({
+    url :url,
+    method:'POST',
     onSuccess :  tokenReceived.type,
-    data:data
+    data:{
+        email:"admin@admin.com",
+        password:"Qwerty@123"
+      }
 
 });
 export  default slice.reducer;

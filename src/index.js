@@ -4,16 +4,11 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {provider} from 'react-redux';
+
 import configureStore from './store/configurestore';
 import {login } from './store/postSlice';
 const store = configureStore();
-store.dispatch(login(
-  {
-    email:"admin@admin.com",
-    password:"Qwerty@123"
-  }
-));
+store.dispatch(login());
 
 
 ReactDOM.render(
