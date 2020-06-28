@@ -42,7 +42,7 @@ class Login extends Component{
         }
         catch(error)
         {
-            console.log(error)
+            console.log(error.response)
         }
 
         
@@ -52,9 +52,11 @@ class Login extends Component{
 
 
     render(){
+        
         return(
             <div className="container ml-auto mr-auto mt-5">
                 <div className="alert alert-info text-center ">Login</div>
+        {this.props.last && <div className="form-group alert alert-info text-center">{this.props.last}</div>}
             <form onSubmit={this.onSubmit.bind(this)}>
                 
                 <div className="form-group">
@@ -78,7 +80,8 @@ class Login extends Component{
 const mapStateToProps = state => {
     return {
         
-        user:state.isAuthenticated
+        user:state.isAuthenticated,
+        last : state.error
         
     }
   };

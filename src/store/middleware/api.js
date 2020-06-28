@@ -37,9 +37,21 @@ const api = ({dispatch}) => next => async action =>{
 
         }
         catch(error)
-        {
-            dispatch(actions.apicallfailed(error));
-            if(onError){dispatch(actions.apicallfailed(error))}
+        {    dispatch(actions.apicallfailed(error));
+            if(error.response.status==='400')
+            {
+                const out = {out : "incorrect credentials"}
+                if(onError){dispatch({type:onError, payload:out })}
+               
+                
+            }
+            else{
+                
+               
+                dispatch(actions.apicallfailed(error));
+                if(onError){dispatch(actions.apicallfailed(error))}
+            }
+            
             
         
         }

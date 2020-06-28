@@ -69,7 +69,7 @@ class PostUpdate extends Component
 
             const {id,name,latitude,longitutude}=this.state;
             e.preventDefault();
-            console.log(this.state);
+            
             let form_data = new FormData();
             form_data.append('picture',this.state.picture,this.state.picture.name);
             form_data.append("name",name);
@@ -105,7 +105,7 @@ class PostUpdate extends Component
 
 
     render(){
-        console.log(this.state,this.props.state,"ll")
+       
         return(
             <div className="container ml-auto mr-auto mt-5">
                 <div className="alert alert-info text-center ">Add Post</div>

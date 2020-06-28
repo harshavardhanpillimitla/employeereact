@@ -5,7 +5,8 @@ const initialState ={
     list:[],
     user:[],
     isAuthenticated:false,
-    justUpdated:false
+    justUpdated:false,
+    error:""
     
 };
 const slice = createSlice({
@@ -32,6 +33,9 @@ const slice = createSlice({
            
             localStorage.clear();
             return initialState;
+        },
+        errorOccoured : (posts,action) => {
+            posts.error = action.payload.out
         }
 
 
@@ -42,13 +46,14 @@ const slice = createSlice({
     
 
 });
-export const {postReceived,tokenReceived,changePosts,logedout} = slice.actions;
+export const {postReceived,tokenReceived,changePosts,logedout,errorOccoured} = slice.actions;
 
 export const login = (data) => actions.apicallbegan({
  
     method:'POST',
     onSuccess :  tokenReceived.type,
     onRedirect: '/home',
+    onError: errorOccoured.type,
     data:data,
     url : '/auth/login/'
 
@@ -68,7 +73,7 @@ export const postsUpdate = (headers,id,data) => actions.apicallbegan({
  
     method:'PATCH',
     url:`/post/${id}/`,
-    onSuccess :  logout.type ,
+    onSuccess :  changePosts.type ,
    
    
     
