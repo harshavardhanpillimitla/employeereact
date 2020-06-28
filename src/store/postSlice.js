@@ -22,7 +22,7 @@ const slice = createSlice({
         tokenReceived : (posts,action) => {
             posts.user = action.payload;
             localStorage.setItem('token',action.payload.token);
-            localStorage.setItem('username',action.payload.user["username"]);
+            localStorage.setItem('username',action.payload.user["first_name"]);
             
             posts.isAuthenticated = true;
             posts.error=""
