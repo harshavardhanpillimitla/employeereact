@@ -50,12 +50,11 @@ class PostDetail extends Component{
       const {latitude,longitutude} = this.state;
       const l = parseFloat(latitude);
       const ln =parseFloat(longitutude);
-      const pos = {
-        lat: l ,
-        lng: ln
-      }
-      console.log(pos)
-      console.log(typeof latitude, typeof l,ln)
+      // const pos = {
+      //   lat: l ,
+      //   lng: ln
+      // }
+    
         return(
           <div  className="container" >
             <Map

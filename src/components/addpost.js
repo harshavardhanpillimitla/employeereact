@@ -1,5 +1,8 @@
-import React,{Component} from 'react'
-import axios from 'axios';
+import React,{Component} from 'react';
+import {AddingPost} from '../store/postSlice'
+
+
+import {connect } from 'react-redux';
 
 
 class AddPost extends Component{
@@ -12,11 +15,18 @@ class AddPost extends Component{
 
     }
     componentDidMount(){
-        //position.coords.latitude
+   
         
         navigator.geolocation.getCurrentPosition(position => this.setLocation(position.coords.latitude,position.coords.longitude) )
+
         
          
+    }
+    componentDidUpdate(){
+        if(this.props.state.justUpdated)
+        {
+            this.props.history.replace("/home");
+        }
     }
     setLocation = (lat,lng) => {
        
@@ -44,7 +54,7 @@ class AddPost extends Component{
 
             const {name,latitude,longitutude}=this.state;
             e.preventDefault();
-            console.log(this.state);
+        
             let form_data = new FormData();
             form_data.append('picture',this.state.picture,this.state.picture.name);
             form_data.append("name",name);
@@ -55,23 +65,16 @@ class AddPost extends Component{
             
             
             
-            const jwt = localStorage.getItem("token");
+            const jwt = this.props.state.user.token;
+
            
-            const config = {
-                headers : {
+            const headers = {
                     'content-type': 'multipart/form-data',
                      Authorization : `JWT ${jwt}`
                 }
-            }
-             axios.post('https://backendemployeeapi.herokuapp.com/post/',form_data,config)
-             .then(res => {
-                  
-                  this.setState({data:res.data});
-                  this.props.history.replace("/home");
-
-    
-             })
-
+            this.props.dispatch(AddingPost(headers,form_data));
+            
+         
              
         }catch(ex)
         {
@@ -107,5 +110,18 @@ class AddPost extends Component{
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        state:state
+    }
+  };
+  const mapDispatchToProps = dispatch =>  {
+    return {
+        dispatch:dispatch
+    }
+  
+     
+  };
 
-export default AddPost;
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddPost);

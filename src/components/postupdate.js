@@ -1,10 +1,14 @@
 import React,{Component} from 'react';
-import axios from 'axios';
+
+import {postsUpdate} from '../store/postSlice'
+import {connect } from 'react-redux';
 
 
 
 class PostUpdate extends Component
 {
+    
+    
     state={
         name:"",
         latitude:0.0,
@@ -16,23 +20,21 @@ class PostUpdate extends Component
       componentDidMount()
       {
                     try{
-                    const id = this.props.match.params.id
-                    const jwt = localStorage.getItem("token");
+                    const postid = parseInt(this.props.match.params.id)
+          
+                     const post= this.props.state.list.filter(post =>  post.id === postid)
+            
+                     const {name,latitude,longitutude,picture,id} = post[0];
                     
-                    const config = {
-                        headers : {
-                            'Content-Type': 'application/json',
-                            Authorization : `JWT ${jwt}`
-                        }
-                    }
+                     
+                     this.setState({name,latitude,longitutude,picture,id });
+                  
                     
-                    axios.get(`https://backendemployeeapi.herokuapp.com/post/${id}/`,config)
-                    .then(res => {
-                            
-                            console.log("stare",res.data)
-                            this.setState(res.data);
-                
-                    })
+                     
+
+
+                    
+              
                 }catch(ex)
                 {
                     alert("error")
@@ -40,6 +42,12 @@ class PostUpdate extends Component
                 }
 
       }
+      componentDidUpdate(){
+        if(this.props.state.justUpdated)
+        {
+            this.props.history.replace("/home");
+        }
+    }
     onChange = e =>
     {
         this.setState({[e.target.id]:e.target.value})
@@ -72,23 +80,17 @@ class PostUpdate extends Component
             
             
             
-            const jwt = localStorage.getItem("token");
+        
+            const jwt = this.props.state.user.token;
            
-            const config = {
-                headers : {
+            const headers = {
                     'content-type': 'multipart/form-data',
                      Authorization : `JWT ${jwt}`
                 }
-            }
-             axios.patch(`https://backendemployeeapi.herokuapp.com/post/${id}/`,form_data,config)
-             .then(res => {
-                  
-                  this.setState({data:res.data});
-                  alert("post tried to update");
-                  this.props.history.replace("/home");
-
-    
-             })
+            
+            this.props.dispatch(postsUpdate(headers,id,form_data));
+            
+          
 
              
         }catch(ex)
@@ -103,6 +105,7 @@ class PostUpdate extends Component
 
 
     render(){
+        console.log(this.state,this.props.state,"ll")
         return(
             <div className="container ml-auto mr-auto mt-5">
                 <div className="alert alert-info text-center ">Add Post</div>
@@ -124,6 +127,19 @@ class PostUpdate extends Component
 
         )
     }
-}
+};
 
-export default PostUpdate;
+const mapStateToProps = state => {
+    return {
+        state:state
+    }
+  };
+  const mapDispatchToProps = dispatch =>  {
+    return {
+        dispatch:dispatch
+    }
+  
+     
+  };
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostUpdate);

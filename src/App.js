@@ -8,6 +8,8 @@ import {Route,Switch} from 'react-router-dom';
 import AddPost from './components/addpost';
 import PostUpdate from './components/postupdate';
 import UserDetail from './components/userdetail';
+
+
 class App extends Component
 {
   componentDidMount()
@@ -42,7 +44,8 @@ class App extends Component
 
     )
   }
-}
+};
+
 
 
 

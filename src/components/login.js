@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import axios from 'axios';
+
+import {connect } from 'react-redux';
+import {login } from '../store/postSlice';
 
 
 
@@ -8,6 +10,17 @@ class Login extends Component{
         name:'',
         email:'',
         password:''
+    }
+    componentDidUpdate()
+    {
+        const  token = this.props.user;
+        const localtoken = localStorage.getItem('token');
+        console.log(this.props.user,localtoken,"login")
+        if(token && localtoken)
+        {
+            this.props.history.replace('/home')
+
+        }
     }
     
     onChange = e =>
@@ -20,9 +33,11 @@ class Login extends Component{
         e.preventDefault();
         try{
         let data = this.state;
-        const {data :jwt} = await axios.post('https://backendemployeeapi.herokuapp.com/auth/login/',data)
-        localStorage.setItem('token',jwt.token);
-        this.props.history.replace('/home')
+        this.props.dispatch(login(data))
+       
+        
+
+        
         
         }
         catch(error)
@@ -60,4 +75,19 @@ class Login extends Component{
         )
     }
 }
-export default Login;
+const mapStateToProps = state => {
+    return {
+        
+        user:state.isAuthenticated
+        
+    }
+  };
+
+const mapDispatchToProps = dispatch =>  {
+    return {
+        dispatch:dispatch
+    }
+  
+     
+  };
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

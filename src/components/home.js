@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
-import axios from 'axios';
+
 
 import Post from './post';
+import {connect } from 'react-redux';
+import {posts} from '../store/postSlice'
 
 
 
@@ -14,37 +16,60 @@ class Home extends Component{
 
 
     }
+    componentDidUpdate()
+    {    
+        alert(this.props.isAuthenticated)
+        if(!this.props.isAuthenticated)
+        {
+            this.props.history.replace('/')
+            
+            
+
+        }
+    }
     componentDidMount()
     {
-        try{
-        const jwt = localStorage.getItem("token");
+        
+        const jwt = this.props.user.token;
+        
+     
+       
    
-        const config = {
-            headers : {
-                'Content-Type': 'application/json',
-                 Authorization : `JWT ${jwt}`
+        try{
+       
+        
+        if(jwt)
+        {
+        
+   
+    
+        const dispatch = this.props.dispatch;
+      
+              
+        dispatch(posts({
+                    'Content-Type': 'application/json',
+                     Authorization : `JWT ${jwt}`
+                }));
             }
-        }
-         axios.get('https://backendemployeeapi.herokuapp.com/post/',config)
-         .then(res => {
-              //const {name,user,picture,layitude,longitutude} = res.data;
-              this.setState({data:res.data});
+        
 
-         })
     }catch(ex)
     {
+        console.log(ex)
 
     }
        
-    }
+    
+}
     
 
     render(){
+   
         return(
             <div className="container mt-5">
 
                 <div className="row">
-                    {this.state.data.map(post => <Post post={post} />)}
+                    {this.props.state.map(post => <Post post={post} />)}
 
                 </div>
 
@@ -57,4 +82,22 @@ class Home extends Component{
         )
     }
 }
-export default Home;
+
+
+const mapStateToProps = state => {
+    return {
+        state:state.list,
+        user:state.user,
+        isAuthenticated:state.isAuthenticated
+        
+    }
+  };
+  const mapDispatchToProps = dispatch =>  {
+    return {
+        dispatch:dispatch
+    }
+  
+     
+  };
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

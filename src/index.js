@@ -4,17 +4,21 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Provider} from 'react-redux';
 import configureStore from './store/configurestore';
-import {login } from './store/postSlice';
+
 const store = configureStore();
-store.dispatch(login());
+
+
+console.log(store.getState())
 
 
 ReactDOM.render(
 
   <BrowserRouter>
+  <Provider store={store}>
     <App />
+  </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 );
