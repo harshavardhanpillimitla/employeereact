@@ -25,6 +25,7 @@ const slice = createSlice({
             localStorage.setItem('username',action.payload.user["username"]);
             
             posts.isAuthenticated = true;
+            posts.error=""
         },
         changePosts : (posts,action) =>{
             posts.justUpdated=true;
