@@ -18,7 +18,7 @@ class Home extends Component{
     }
     componentDidUpdate()
     {    
-        alert(this.props.isAuthenticated)
+        
         if(!this.props.isAuthenticated)
         {
             this.props.history.replace('/')

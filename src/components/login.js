@@ -15,7 +15,7 @@ class Login extends Component{
     {
         const  token = this.props.user;
         const localtoken = localStorage.getItem('token');
-        console.log(this.props.user,localtoken,"login")
+        
         if(token && localtoken)
         {
             this.props.history.replace('/home')

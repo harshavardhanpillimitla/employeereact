@@ -82,7 +82,7 @@ export const AddingPost = (headers,data) => actions.apicallbegan({
  
     method:'POST',
     url:'/post/',
-    onSuccess : logedout.type ,
+    onSuccess : changePosts.type ,
    
    
     
