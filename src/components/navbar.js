@@ -34,9 +34,7 @@ class NavBar extends Component
                         <li className="nav-item active">
                             <Link className="nav-link" to="/home">Home <span className="sr-only">(current)</span></Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link " to="/AddPost">AddPost</Link>
-                        </li>
+                        
                         { !isAuthenticated  ? <React.Fragment><li className="nav-item">
                             <Link className="nav-link" to="/">login</Link>
                         </li>
@@ -52,6 +50,7 @@ class NavBar extends Component
                         <li className="nav-item  mr-auto">
                             <Link className="nav-link " to="/AddPost">AddPost</Link>
                         </li>
+
                         </React.Fragment>
                        }
                         
