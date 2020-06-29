@@ -25,7 +25,7 @@ class Register extends Component{
         axios.post('https://backendemployeeapi.herokuapp.com/users/',data)
         .then(res => {
             alert('maybe success');
-            this.props.history.replace('/login')
+            this.props.history.replace('/')
         })
         }catch(error){
             console.log(error);

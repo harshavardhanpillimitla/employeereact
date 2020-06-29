@@ -49,13 +49,14 @@ class NavBar extends Component
                         <li className="nav-item  mr-auto">
                         <p className="nav-link ">{localStorage.getItem("username")}</p>
                         </li>
+                        <li className="nav-item  mr-auto">
+                            <Link className="nav-link " to="/AddPost">AddPost</Link>
+                        </li>
                         </React.Fragment>
                        }
                         
 
-                        <li className="nav-item  mr-auto">
-                            <Link className="nav-link " to="/AddPost">AddPost</Link>
-                        </li>
+                       
                       
                         </ul>
                     </div>
